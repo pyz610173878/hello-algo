@@ -28,6 +28,7 @@ class LinkedListStack {
     /* 入栈 */
     push(num) {
         const node = new ListNode(num);
+        // 创建新节点
         node.next = this.#stackPeek;
         this.#stackPeek = node;
         this.#stkSize++;
@@ -37,6 +38,8 @@ class LinkedListStack {
     pop() {
         const num = this.peek();
         this.#stackPeek = this.#stackPeek.next;
+        // this.#stackPeek.next是一个对象，这个对象就是无
+        // 索引值为第二位的节点对象变成了头节点。
         this.#stkSize--;
         return num;
     }

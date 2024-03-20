@@ -46,6 +46,9 @@
         return a + b + c;         // 输出数据
     }
     ```
+    
+    任何变量都属于暂存数据，不管这个变量是采用什么数据结构。
+
 
 === "C++"
 
@@ -56,13 +59,13 @@
         Node *next;
         Node(int x) : val(x), next(nullptr) {}
     };
-
+    
     /* 函数 */
     int func() {
         // do something...
         return 0;
     }
-
+    
     int algorithm(int n) {        // 输入数据
         const int a = 0;          // 暂存数据（常量）
         int b = 0;                // 暂存数据（变量）
@@ -80,12 +83,12 @@
         def __init__(self, x: int):
             self.val: int = x                 # 节点值
             self.next: Optional[Node] = None  # 指向下一节点的指针（引用）
-
+    
     def function() -> int:
         """函数"""
         # do something...
         return 0
-
+    
     def algorithm(n) -> int:  # 输入数据
         A: int = 0            # 暂存数据（常量，一般用大写字母表示）
         b: int = 0            # 暂存数据（变量）
@@ -102,7 +105,7 @@
         val  int
         next *node
     }
-
+    
     /* 创建 node 结构体  */
     func newNode(val int) *node {
         return &node{val: val}
@@ -113,7 +116,7 @@
         // do something...
         return 0
     }
-
+    
     func algorithm(n int) int { // 输入数据
         const a = 0             // 暂存数据（常量）
         b := 0                  // 暂存数据（变量）
@@ -123,148 +126,29 @@
     }
     ```
 
-=== "JavaScript"
-
-    ```javascript title=""
-    /* 类 */
-    class Node {
-        val;
-        next;
-        constructor(val) {
-            this.val = val === undefined ? 0 : val; // 节点值
-            this.next = null;                       // 指向下一节点的引用
-        }
-    }
-
-    /* 函数 */
-    function constFunc() {
-        // do something
-        return 0;
-    }
-
-    function algorithm(n) {       // 输入数据
-        const a = 0;              // 暂存数据（常量）
-        let b = 0;                // 暂存数据（变量）
-        const node = new Node(0); // 暂存数据（对象）
-        const c = constFunc();    // 栈帧空间（调用函数）
-        return a + b + c;         // 输出数据
-    }
-    ```
-
-=== "TypeScript"
-
-    ```typescript title=""
-    /* 类 */
-    class Node {
-        val: number;
-        next: Node | null;
-        constructor(val?: number) {
-            this.val = val === undefined ? 0 : val; // 节点值
-            this.next = null;                       // 指向下一节点的引用
-        }
-    }
-
-    /* 函数 */
-    function constFunc(): number {
-        // do something
-        return 0;
-    }
-
-    function algorithm(n: number): number { // 输入数据
-        const a = 0;                        // 暂存数据（常量）
-        let b = 0;                          // 暂存数据（变量）
-        const node = new Node(0);           // 暂存数据（对象）
-        const c = constFunc();              // 栈帧空间（调用函数）
-        return a + b + c;                   // 输出数据
-    }
-    ```
-
-=== "C"
-
-    ```c title=""
-    /* 函数 */
-    int func() {
-        // do something...
-        return 0;
-    }
-
-    int algorithm(int n) { // 输入数据
-        const int a = 0;   // 暂存数据（常量）
-        int b = 0;         // 暂存数据（变量）
-        int c = func();    // 栈帧空间（调用函数）
-        return a + b + c;  // 输出数据
-    }
-    ```
-
-=== "C#"
-
-    ```csharp title=""
-    /* 类 */
-    class Node
-    {
-        int val;
-        Node next;
-        Node(int x) { val = x; }
-    }
-
-    /* 函数 */
-    int function()
-    {
-        // do something...
-        return 0;
-    }
-
-    int algorithm(int n)          // 输入数据
-    {
-        const int a = 0;          // 暂存数据（常量）
-        int b = 0;                // 暂存数据（变量）
-        Node node = new Node(0);  // 暂存数据（对象）
-        int c = function();       // 栈帧空间（调用函数）
-        return a + b + c;         // 输出数据
-    }
-    ```
-
-=== "Swift"
-
-    ```swift title=""
-    /* 类 */
-    class Node {
-        var val: Int
-        var next: Node?
-
-        init(x: Int) {
-            val = x
-        }
-    }
-
-    /* 函数 */
-    func function() -> Int {
-        // do something...
-        return 0
-    }
-
-    func algorithm(n: Int) -> Int { // 输入数据
-        let a = 0             // 暂存数据（常量）
-        var b = 0             // 暂存数据（变量）
-        let node = Node(x: 0) // 暂存数据（对象）
-        let c = function()    // 栈帧空间（调用函数）
-        return a + b + c      // 输出数据
-    }
-    ```
-
-=== "Zig"
-
-    ```zig title=""
-
-    ```
-
 ## 推算方法
 
-空间复杂度的推算方法与时间复杂度大致相同，只是将统计对象从“计算操作数量”转为“使用空间大小”。与时间复杂度不同的是，**我们通常只关注「最差空间复杂度」**，这是因为内存空间是一项硬性要求，我们必须确保在所有输入数据下都有足够的内存空间预留。
+空间复杂度的推算方法与时间复杂度大致相同，只是将统计对象从“计算操作数量”转为“使用空间大小”。与时间复杂度不同的是，我们通常只关注「**最差空间复杂度**」，这是因为内存空间是一项硬性要求，我们必须确保在所有输入数据下都有足够的内存空间预留。
 
-**最差空间复杂度中的“最差”有两层含义**，分别是输入数据的最差分布和算法运行过程中的最差时间点。
+**最差空间复杂度中的“最差”有两层含义**，分别是输入数据的**最差分布**和算法运行过程中的**最差时间点**。
 
 - **以最差输入数据为准**。当 $n < 10$ 时，空间复杂度为 $O(1)$ ；但当 $n > 10$ 时，初始化的数组 `nums` 占用 $O(n)$ 空间；因此最差空间复杂度为 $O(n)$ ；
+
+```
+如果数据的规模大一点即空间复杂度就大一点。力扣中的输入参数往往都是固定的。
+
+
+
+```
+
+<img src="space_complexity.assets/image-20231016234921755-16974713631091.png" alt="image-20231016234921755" style="zoom:50%;" />
+
+这些都属于暂存数据。
+
+
+
+### 最差时间点
+
 - **以算法运行过程中的峰值内存为准**。例如，程序在执行最后一行之前，占用 $O(1)$ 空间；当初始化数组 `nums` 时，程序占用 $O(n)$ 空间；因此最差空间复杂度为 $O(n)$ ；
 
 === "Java"
@@ -377,8 +261,18 @@
 === "Zig"
 
     ```zig title=""
-
+    
     ```
+
+
+
+
+
+### 栈帧空间
+
+
+
+
 
 **在递归函数中，需要注意统计栈帧空间**。例如，函数 `loop()` 在循环中调用了 $n$ 次 `function()` ，每轮中的 `function()` 都返回并释放了栈帧空间，因此空间复杂度仍为 $O(1)$ 。而递归函数 `recur()` 在运行过程中会同时存在 $n$ 个未返回的 `recur()` ，从而占用 $O(n)$ 的栈帧空间。
 
@@ -428,12 +322,12 @@
     def function() -> int:
         # do something
         return 0
-
+    
     def loop(n: int) -> None:
         """循环 O(1)"""
         for _ in range(n):
             function()
-
+    
     def recur(n: int) -> int:
         """递归 O(n)"""
         if n == 1: return
@@ -556,14 +450,14 @@
         // do something
         return 0
     }
-
+    
     /* 循环 O(1) */
     func loop(n: Int) {
         for _ in 0 ..< n {
             function()
         }
     }
-
+    
     /* 递归 O(n) */
     func recur(n: Int) {
         if n == 1 {
@@ -576,7 +470,7 @@
 === "Zig"
 
     ```zig title=""
-
+    
     ```
 
 ## 常见类型
@@ -706,7 +600,7 @@ $$
 
     ```c title="space_complexity.c"
     [class]{hashTable}-[func]{}
-
+    
     [class]{}-[func]{linear}
     ```
 

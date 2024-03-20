@@ -12,6 +12,13 @@ function randomAccess(nums) {
     const random_num = nums[random_index];
     return random_num;
 }
+/**
+ * 这个函数是如何得出的呢？是根据那个公式得出的。
+ */
+
+
+
+
 
 /* 扩展数组长度 */
 // 请注意，JavaScript 的 Array 是动态数组，可以直接扩展
@@ -72,6 +79,13 @@ const arr = new Array(5).fill(0);
 console.log('数组 arr =', arr);
 let nums = [1, 3, 2, 5, 4];
 console.log('数组 nums =', nums);
+
+
+
+
+
+
+
 
 /* 随机访问 */
 let random_num = randomAccess(nums);

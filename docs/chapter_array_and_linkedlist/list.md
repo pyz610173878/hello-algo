@@ -1,10 +1,42 @@
-# 列表
 
-**数组长度不可变导致实用性降低**。在许多情况下，我们事先无法确定需要存储多少数据，这使数组长度的选择变得困难。若长度过小，需要在持续添加数据时频繁扩容数组；若长度过大，则会造成内存空间的浪费。
 
-为解决此问题，出现了一种被称为「动态数组 Dynamic Array」的数据结构，即长度可变的数组，也常被称为「列表 List」。列表基于数组实现，继承了数组的优点，并且可以在程序运行过程中动态扩容。在列表中，我们可以自由添加元素，而无需担心超过容量限制。
+# 4.3 列表
 
-## 列表常用操作
+### 1. 内涵
+
+「列表 list」是一个**抽象的**数据结构概念，它表示元素的有序集合，支持元素访问、修改、添加、删除和遍历等操作，无需使用者考虑容量限制的问题。列表可以基于**链表**或**数组**实现。
+
+```
+1. 有序集合
+2. 支持元素访问、修改、添加、删除和遍历等操作
+3. 容量没有限制
+```
+
+
+
+### 2. 外延
+
+### 1. 链表
+
+* 链表天然可以被看作是一个列表，其支持元素增删查改操作，并且可以灵活动态扩容。
+
+
+
+### 2. 数组与动态数组
+
+* 数组也支持元素增删查改，但由于其长度不可变，因此只能被看作是一个具有长度限制的列表。
+
+当使用数组实现列表时，**长度不可变的性质会导致列表的实用性降低**。这是因为我们通常无法事先确定需要存储多少数据，从而难以选择合适的列表长度。若长度过小，则很可能无法满足使用需求；若长度过大，则会造成内存空间的浪费。
+
+为解决此问题，我们可以使用「动态数组 dynamic array」来实现列表。它继承了数组的各项优点，并且可以在程序运行过程中进行**动态扩容**。
+
+实际上，**许多编程语言中的标准库提供的列表都是基于动态数组实现的**，例如 Python 中的 `list` 、Java 中的 `ArrayList` 、C++ 中的 `vector` 和 C# 中的 `List` 等。在接下来的讨论中，我们将把“列表”和“动态数组”视为等同的概念。
+
+
+
+
+
+# 4.3.1 列表常用操作
 
 **初始化列表**。通常我们会使用“无初始值”和“有初始值”的两种初始化方法。
 
@@ -113,7 +145,7 @@
     ```java title="list.java"
     /* 访问元素 */
     int num = list.get(1);  // 访问索引 1 处的元素
-
+    
     /* 更新元素 */
     list.set(1, 0);  // 将索引 1 处的元素更新为 0
     ```
@@ -123,7 +155,7 @@
     ```cpp title="list.cpp"
     /* 访问元素 */
     int num = list[1];  // 访问索引 1 处的元素
-
+    
     /* 更新元素 */
     list[1] = 0;  // 将索引 1 处的元素更新为 0
     ```
@@ -133,7 +165,7 @@
     ```python title="list.py"
     # 访问元素
     num: int = list[1]  # 访问索引 1 处的元素
-
+    
     # 更新元素
     list[1] = 0    # 将索引 1 处的元素更新为 0
     ```
@@ -143,7 +175,7 @@
     ```go title="list_test.go"
     /* 访问元素 */
     num := list[1]  // 访问索引 1 处的元素
-
+    
     /* 更新元素 */
     list[1] = 0     // 将索引 1 处的元素更新为 0
     ```
@@ -153,7 +185,7 @@
     ```javascript title="list.js"
     /* 访问元素 */
     const num = list[1];  // 访问索引 1 处的元素
-
+    
     /* 更新元素 */
     list[1] = 0;  // 将索引 1 处的元素更新为 0
     ```
@@ -163,7 +195,7 @@
     ```typescript title="list.ts"
     /* 访问元素 */
     const num: number = list[1];  // 访问索引 1 处的元素
-
+    
     /* 更新元素 */
     list[1] = 0;  // 将索引 1 处的元素更新为 0
     ```
@@ -179,7 +211,7 @@
     ```csharp title="list.cs"
     /* 访问元素 */
     int num = list[1];  // 访问索引 1 处的元素
-
+    
     /* 更新元素 */
     list[1] = 0;  // 将索引 1 处的元素更新为 0
     ```
@@ -189,7 +221,7 @@
     ```swift title="list.swift"
     /* 访问元素 */
     let num = list[1] // 访问索引 1 处的元素
-
+    
     /* 更新元素 */
     list[1] = 0 // 将索引 1 处的元素更新为 0
     ```
@@ -199,7 +231,7 @@
     ```zig title="list.zig"
     // 访问元素
     var num = list.items[1]; // 访问索引 1 处的元素
-
+    
     // 更新元素
     list.items[1] = 0; // 将索引 1 处的元素更新为 0  
     ```
@@ -211,17 +243,17 @@
     ```java title="list.java"
     /* 清空列表 */
     list.clear();
-
+    
     /* 尾部添加元素 */
     list.add(1);
     list.add(3);
     list.add(2);
     list.add(5);
     list.add(4);
-
+    
     /* 中间插入元素 */
     list.add(3, 6);  // 在索引 3 处插入数字 6
-
+    
     /* 删除元素 */
     list.remove(3);  // 删除索引 3 处的元素
     ```
@@ -231,17 +263,17 @@
     ```cpp title="list.cpp"
     /* 清空列表 */
     list.clear();
-
+    
     /* 尾部添加元素 */
     list.push_back(1);
     list.push_back(3);
     list.push_back(2);
     list.push_back(5);
     list.push_back(4);
-
+    
     /* 中间插入元素 */
     list.insert(list.begin() + 3, 6);  // 在索引 3 处插入数字 6
-
+    
     /* 删除元素 */
     list.erase(list.begin() + 3);      // 删除索引 3 处的元素
     ```
@@ -251,17 +283,17 @@
     ```python title="list.py"
     # 清空列表
     list.clear()
-
+    
     # 尾部添加元素
     list.append(1)
     list.append(3)
     list.append(2)
     list.append(5)
     list.append(4)
-
+    
     # 中间插入元素
     list.insert(3, 6)  # 在索引 3 处插入数字 6
-
+    
     # 删除元素
     list.pop(3)        # 删除索引 3 处的元素
     ```
@@ -271,17 +303,17 @@
     ```go title="list_test.go"
     /* 清空列表 */
     list = nil
-
+    
     /* 尾部添加元素 */
     list = append(list, 1)
     list = append(list, 3)
     list = append(list, 2)
     list = append(list, 5)
     list = append(list, 4)
-
+    
     /* 中间插入元素 */
     list = append(list[:3], append([]int{6}, list[3:]...)...) // 在索引 3 处插入数字 6
-
+    
     /* 删除元素 */
     list = append(list[:3], list[4:]...) // 删除索引 3 处的元素
     ```
@@ -291,17 +323,17 @@
     ```javascript title="list.js"
     /* 清空列表 */
     list.length = 0;
-
+    
     /* 尾部添加元素 */
     list.push(1);
     list.push(3);
     list.push(2);
     list.push(5);
     list.push(4);
-
+    
     /* 中间插入元素 */
     list.splice(3, 0, 6);
-
+    
     /* 删除元素 */
     list.splice(3, 1);
     ```
@@ -311,17 +343,17 @@
     ```typescript title="list.ts"
     /* 清空列表 */
     list.length = 0;
-
+    
     /* 尾部添加元素 */
     list.push(1);
     list.push(3);
     list.push(2);
     list.push(5);
     list.push(4);
-
+    
     /* 中间插入元素 */
     list.splice(3, 0, 6);
-
+    
     /* 删除元素 */
     list.splice(3, 1);
     ```
@@ -337,17 +369,17 @@
     ```csharp title="list.cs"
     /* 清空列表 */
     list.Clear();
-
+    
     /* 尾部添加元素 */
     list.Add(1);
     list.Add(3);
     list.Add(2);
     list.Add(5);
     list.Add(4);
-
+    
     /* 中间插入元素 */
     list.Insert(3, 6);
-
+    
     /* 删除元素 */
     list.RemoveAt(3);
     ```
@@ -357,17 +389,17 @@
     ```swift title="list.swift"
     /* 清空列表 */
     list.removeAll()
-
+    
     /* 尾部添加元素 */
     list.append(1)
     list.append(3)
     list.append(2)
     list.append(5)
     list.append(4)
-
+    
     /* 中间插入元素 */
     list.insert(6, at: 3) // 在索引 3 处插入数字 6
-
+    
     /* 删除元素 */
     list.remove(at: 3) // 删除索引 3 处的元素
     ```
@@ -377,17 +409,17 @@
     ```zig title="list.zig"
     // 清空列表
     list.clearRetainingCapacity();
-
+    
     // 尾部添加元素
     try list.append(1);
     try list.append(3);
     try list.append(2);
     try list.append(5);
     try list.append(4);
-
+    
     // 中间插入元素
     try list.insert(3, 6); // 在索引 3 处插入数字 6
-
+    
     // 删除元素
     _ = list.orderedRemove(3); // 删除索引 3 处的元素
     ```
@@ -402,7 +434,7 @@
     for (int i = 0; i < list.size(); i++) {
         count++;
     }
-
+    
     /* 直接遍历列表元素 */
     count = 0;
     for (int n : list) {
@@ -418,7 +450,7 @@
     for (int i = 0; i < list.size(); i++) {
         count++;
     }
-
+    
     /* 直接遍历列表元素 */
     count = 0;
     for (int n : list) {
@@ -433,7 +465,7 @@
     count: int = 0
     for i in range(len(list)):
         count += 1
-
+    
     # 直接遍历列表元素
     count: int = 0
     for n in list:
@@ -448,7 +480,7 @@
     for i := 0; i < len(list); i++ {
         count++
     }
-
+    
     /* 直接遍历列表元素 */
     count = 0
     for range list {
@@ -464,7 +496,7 @@
     for (let i = 0; i < list.length; i++) {
         count++;
     }
-
+    
     /* 直接遍历列表元素 */
     count = 0;
     for (const n of list) {
@@ -480,7 +512,7 @@
     for (let i = 0; i < list.length; i++) {
         count++;
     }
-
+    
     /* 直接遍历列表元素 */
     count = 0;
     for (const n of list) {
@@ -503,7 +535,7 @@
     {
         count++;
     }
-
+    
     /* 直接遍历列表元素 */
     count = 0;
     foreach (int n in list)
@@ -520,7 +552,7 @@
     for _ in list.indices {
         count += 1
     }
-
+    
     /* 直接遍历列表元素 */
     count = 0
     for _ in list {
@@ -537,7 +569,7 @@
     while (i < list.items.len) : (i += 1) {
         count += 1;
     }
-
+    
     // 直接遍历列表元素
     count = 0;
     for (list.items) |_| {
